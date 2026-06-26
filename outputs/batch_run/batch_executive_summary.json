@@ -1,0 +1,43 @@
+{
+  "primary_failures": {},
+  "secondary_symptoms": {},
+  "transformation_failures": {
+    "position_or_translation_mismatch": 8,
+    "shape_mismatch": 2
+  },
+  "task_failure_density": {
+    "task_001.json_train_0": {
+      "density": 1,
+      "dominant_issues": "position_or_translation_mismatch",
+      "health_score": 98.0
+    },
+    "task_001.json_test_0": {
+      "density": 1,
+      "dominant_issues": "position_or_translation_mismatch",
+      "health_score": 98.0
+    },
+    "task_002.json_train_0": {
+      "density": 2,
+      "dominant_issues": "shape_mismatch",
+      "health_score": 83.0
+    },
+    "task_002.json_test_0": {
+      "density": 2,
+      "dominant_issues": "shape_mismatch",
+      "health_score": 83.0
+    },
+    "task_003.json_train_0": {
+      "density": 2,
+      "dominant_issues": "position_or_translation_mismatch",
+      "health_score": 96.0
+    },
+    "task_003.json_test_0": {
+      "density": 2,
+      "dominant_issues": "position_or_translation_mismatch",
+      "health_score": 96.0
+    }
+  },
+  "total_matched_pairs": 8,
+  "total_tasks": 6,
+  "overall_health_score": 92.3
+}

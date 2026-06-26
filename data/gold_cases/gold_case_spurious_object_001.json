@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_spurious_object_001",
+  "description": "Prediction contains an extra object not present in target.",
+  "input": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,4],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "expected_global_failures": ["spurious_object", "global_color_distribution_shift"],
+  "expected_pair_failures": [],
+  "notes": "Extra object added in prediction."
+}

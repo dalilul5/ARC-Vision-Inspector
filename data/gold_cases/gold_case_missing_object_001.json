@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_missing_object_001",
+  "description": "One target object is completely missing in prediction.",
+  "input": [
+    [0,0,0,0,0],
+    [0,2,2,0,3],
+    [0,2,0,0,3],
+    [0,0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0,0],
+    [0,2,2,0,0],
+    [0,2,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0,0],
+    [0,2,2,0,3],
+    [0,2,0,0,3],
+    [0,0,0,0,0]
+  ],
+  "expected_global_failures": ["missing_object", "global_color_distribution_shift"],
+  "expected_pair_failures": [],
+  "notes": "Tests whether the framework detects dropped target objects."
+}

@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_color_shift_001",
+  "description": "Object shape and position are correct, but color is wrong.",
+  "input": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0],
+    [0,3,3,0],
+    [0,3,0,0],
+    [0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "expected_global_failures": ["global_color_distribution_shift"],
+  "expected_pair_failures": ["color_mismatch"],
+  "notes": "Same geometry, wrong color."
+}

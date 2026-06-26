@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_perfect_match_001",
+  "description": "Prediction exactly matches target.",
+  "input": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0],
+    [0,2,2,0],
+    [0,2,0,0],
+    [0,0,0,0]
+  ],
+  "expected_global_failures": ["prediction_matches_target_under_current_diagnostics"],
+  "expected_pair_failures": ["no_pair_level_failure"],
+  "notes": "Sanity check case."
+}

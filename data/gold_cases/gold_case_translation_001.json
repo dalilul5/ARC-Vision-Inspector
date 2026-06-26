@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_translation_001",
+  "description": "Object exists but is in the wrong position.",
+  "input": [
+    [0,0,0,0,0],
+    [0,2,2,0,0],
+    [0,2,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0,0],
+    [0,2,2,0,0],
+    [0,2,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0,0],
+    [0,0,2,2,0],
+    [0,0,2,0,0],
+    [0,0,0,0,0]
+  ],
+  "expected_global_failures": [],
+  "expected_pair_failures": ["position_or_translation_mismatch"],
+  "notes": "Object identity preserved, but target requires a right shift."
+}

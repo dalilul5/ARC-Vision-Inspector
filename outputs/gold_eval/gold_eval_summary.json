@@ -1,0 +1,184 @@
+{
+  "num_cases": 8,
+  "strict_pass_count": 3,
+  "relaxed_pass_count": 7,
+  "strict_accuracy": 0.375,
+  "relaxed_accuracy": 0.875,
+  "results": [
+    {
+      "name": "gold_case_area_mismatch_001",
+      "file": "gold_case_area_mismatch_001.json",
+      "description": "Prediction captures the object but with one extra cell.",
+      "expected_global_failures": [],
+      "actual_global_failures": [],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "area_mismatch",
+        "shape_mismatch"
+      ],
+      "actual_pair_failures": [
+        "area_mismatch",
+        "position_or_translation_mismatch",
+        "shape_mismatch"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": false,
+      "pass_strict": false,
+      "pass_relaxed": true,
+      "notes": "Predicted object has an additional pixel."
+    },
+    {
+      "name": "gold_case_color_shift_001",
+      "file": "gold_case_color_shift_001.json",
+      "description": "Object shape and position are correct, but color is wrong.",
+      "expected_global_failures": [
+        "global_color_distribution_shift"
+      ],
+      "actual_global_failures": [
+        "global_color_distribution_shift"
+      ],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "color_mismatch"
+      ],
+      "actual_pair_failures": [
+        "color_mismatch"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": true,
+      "pass_strict": true,
+      "pass_relaxed": true,
+      "notes": "Same geometry, wrong color."
+    },
+    {
+      "name": "gold_case_missing_object_001",
+      "file": "gold_case_missing_object_001.json",
+      "description": "One target object is completely missing in prediction.",
+      "expected_global_failures": [
+        "global_color_distribution_shift",
+        "missing_object"
+      ],
+      "actual_global_failures": [
+        "global_color_distribution_shift",
+        "missing_object"
+      ],
+      "global_exact_match": true,
+      "expected_pair_failures": [],
+      "actual_pair_failures": [
+        "no_pair_level_failure"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": false,
+      "pass_strict": false,
+      "pass_relaxed": true,
+      "notes": "Tests whether the framework detects dropped target objects."
+    },
+    {
+      "name": "gold_case_perfect_match_001",
+      "file": "gold_case_perfect_match_001.json",
+      "description": "Prediction exactly matches target.",
+      "expected_global_failures": [
+        "prediction_matches_target_under_current_diagnostics"
+      ],
+      "actual_global_failures": [
+        "prediction_matches_target_under_current_diagnostics"
+      ],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "no_pair_level_failure"
+      ],
+      "actual_pair_failures": [
+        "no_pair_level_failure"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": true,
+      "pass_strict": true,
+      "pass_relaxed": true,
+      "notes": "Sanity check case."
+    },
+    {
+      "name": "gold_case_rot90_001",
+      "file": "gold_case_rot90_001.json",
+      "description": "Prediction contains the same shape family but rotated relative to target.",
+      "expected_global_failures": [],
+      "actual_global_failures": [],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "orientation_or_reflection_mismatch"
+      ],
+      "actual_pair_failures": [
+        "orientation_or_reflection_mismatch",
+        "position_or_translation_mismatch"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": false,
+      "pass_strict": false,
+      "pass_relaxed": true,
+      "notes": "Using orientation_or_reflection_mismatch as per core/diagnostics.py logic."
+    },
+    {
+      "name": "gold_case_shape_mismatch_001",
+      "file": "gold_case_shape_mismatch_001.json",
+      "description": "Prediction keeps object color but changes its geometry.",
+      "expected_global_failures": [],
+      "actual_global_failures": [],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "area_mismatch",
+        "position_or_translation_mismatch",
+        "shape_mismatch"
+      ],
+      "actual_pair_failures": [
+        "position_or_translation_mismatch",
+        "shape_mismatch"
+      ],
+      "pair_contains_expected": false,
+      "pair_exact_match": false,
+      "pass_strict": false,
+      "pass_relaxed": false,
+      "notes": "Predicted geometry differs from target."
+    },
+    {
+      "name": "gold_case_spurious_object_001",
+      "file": "gold_case_spurious_object_001.json",
+      "description": "Prediction contains an extra object not present in target.",
+      "expected_global_failures": [
+        "global_color_distribution_shift",
+        "spurious_object"
+      ],
+      "actual_global_failures": [
+        "global_color_distribution_shift",
+        "spurious_object"
+      ],
+      "global_exact_match": true,
+      "expected_pair_failures": [],
+      "actual_pair_failures": [
+        "no_pair_level_failure"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": false,
+      "pass_strict": false,
+      "pass_relaxed": true,
+      "notes": "Extra object added in prediction."
+    },
+    {
+      "name": "gold_case_translation_001",
+      "file": "gold_case_translation_001.json",
+      "description": "Object exists but is in the wrong position.",
+      "expected_global_failures": [],
+      "actual_global_failures": [],
+      "global_exact_match": true,
+      "expected_pair_failures": [
+        "position_or_translation_mismatch"
+      ],
+      "actual_pair_failures": [
+        "position_or_translation_mismatch"
+      ],
+      "pair_contains_expected": true,
+      "pair_exact_match": true,
+      "pass_strict": true,
+      "pass_relaxed": true,
+      "notes": "Object identity preserved, but target requires a right shift."
+    }
+  ]
+}

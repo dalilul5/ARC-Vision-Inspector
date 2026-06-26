@@ -1,0 +1,9 @@
+file,global_exact_match,name,pair_contains_expected,pair_exact_match,pass_relaxed,pass_strict
+gold_case_area_mismatch_001.json,True,gold_case_area_mismatch_001,True,False,True,False
+gold_case_color_shift_001.json,True,gold_case_color_shift_001,True,True,True,True
+gold_case_missing_object_001.json,True,gold_case_missing_object_001,True,False,True,False
+gold_case_perfect_match_001.json,True,gold_case_perfect_match_001,True,True,True,True
+gold_case_rot90_001.json,True,gold_case_rot90_001,True,False,True,False
+gold_case_shape_mismatch_001.json,True,gold_case_shape_mismatch_001,False,False,False,False
+gold_case_spurious_object_001.json,True,gold_case_spurious_object_001,True,False,True,False
+gold_case_translation_001.json,True,gold_case_translation_001,True,True,True,True

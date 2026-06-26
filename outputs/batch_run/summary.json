@@ -1,0 +1,6 @@
+{
+  "predictor_mode": "identity",
+  "num_tasks": 3,
+  "num_samples": 6,
+  "global_failure_counts": {}
+}

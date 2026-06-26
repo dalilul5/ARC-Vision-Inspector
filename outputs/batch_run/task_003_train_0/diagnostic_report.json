@@ -1,0 +1,1020 @@
+{
+  "object_counts": {
+    "input": 2,
+    "pred": 2,
+    "true": 2
+  },
+  "color_distribution": {
+    "pred_colors": {
+      "5": 1,
+      "6": 1
+    },
+    "true_colors": {
+      "5": 1,
+      "6": 1
+    },
+    "match": true,
+    "color_shift_mapping": {}
+  },
+  "matching": {
+    "matches": [
+      {
+        "pred_obj_id": 0,
+        "true_obj_id": 0,
+        "score": 10.8,
+        "pred_color": 5,
+        "true_color": 5,
+        "pred_area": 3,
+        "true_area": 3,
+        "pred_centroid": [
+          1.333,
+          1.333
+        ],
+        "true_centroid": [
+          1.333,
+          2.333
+        ],
+        "shape_relation": "exact_shape"
+      },
+      {
+        "pred_obj_id": 1,
+        "true_obj_id": 1,
+        "score": 10.8,
+        "pred_color": 6,
+        "true_color": 6,
+        "pred_area": 2,
+        "true_area": 2,
+        "pred_centroid": [
+          1.5,
+          4.0
+        ],
+        "true_centroid": [
+          1.5,
+          5.0
+        ],
+        "shape_relation": "exact_shape"
+      }
+    ],
+    "unmatched_pred": [],
+    "unmatched_true": []
+  },
+  "pair_diagnostics": [
+    {
+      "pred_obj_id": 0,
+      "true_obj_id": 0,
+      "score": 10.8,
+      "pred_color": 5,
+      "true_color": 5,
+      "pred_area": 3,
+      "true_area": 3,
+      "pred_centroid": [
+        1.333,
+        1.333
+      ],
+      "true_centroid": [
+        1.333,
+        2.333
+      ],
+      "shape_relation": "exact_shape",
+      "pair_failures": [
+        {
+          "type": "position_or_translation_mismatch",
+          "magnitude": 1.0000000000000002,
+          "unit": "pixels"
+        }
+      ]
+    },
+    {
+      "pred_obj_id": 1,
+      "true_obj_id": 1,
+      "score": 10.8,
+      "pred_color": 6,
+      "true_color": 6,
+      "pred_area": 2,
+      "true_area": 2,
+      "pred_centroid": [
+        1.5,
+        4.0
+      ],
+      "true_centroid": [
+        1.5,
+        5.0
+      ],
+      "shape_relation": "exact_shape",
+      "pair_failures": [
+        {
+          "type": "position_or_translation_mismatch",
+          "magnitude": 1.0,
+          "unit": "pixels"
+        }
+      ]
+    }
+  ],
+  "global_failures": [],
+  "input_objects": [
+    {
+      "obj_id": 0,
+      "color": 5,
+      "pixels": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "area": 3,
+      "bbox": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "height": 2,
+      "width": 2,
+      "centroid": [
+        1.333,
+        1.333
+      ],
+      "shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot180": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "obj_id": 1,
+      "color": 6,
+      "pixels": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "area": 2,
+      "bbox": [
+        1,
+        4,
+        2,
+        4
+      ],
+      "height": 2,
+      "width": 1,
+      "centroid": [
+        1.5,
+        4.0
+      ],
+      "shape_mask": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "canonical_shape": [
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    }
+  ],
+  "pred_objects": [
+    {
+      "obj_id": 0,
+      "color": 5,
+      "pixels": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "area": 3,
+      "bbox": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "height": 2,
+      "width": 2,
+      "centroid": [
+        1.333,
+        1.333
+      ],
+      "shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot180": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "obj_id": 1,
+      "color": 6,
+      "pixels": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "area": 2,
+      "bbox": [
+        1,
+        4,
+        2,
+        4
+      ],
+      "height": 2,
+      "width": 1,
+      "centroid": [
+        1.5,
+        4.0
+      ],
+      "shape_mask": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "canonical_shape": [
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    }
+  ],
+  "true_objects": [
+    {
+      "obj_id": 0,
+      "color": 5,
+      "pixels": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "area": 3,
+      "bbox": [
+        1,
+        2,
+        2,
+        3
+      ],
+      "height": 2,
+      "width": 2,
+      "centroid": [
+        1.333,
+        2.333
+      ],
+      "shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot180": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "obj_id": 1,
+      "color": 6,
+      "pixels": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "area": 2,
+      "bbox": [
+        1,
+        5,
+        2,
+        5
+      ],
+      "height": 2,
+      "width": 1,
+      "centroid": [
+        1.5,
+        5.0
+      ],
+      "shape_mask": [
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "canonical_shape": [
+        [
+          1,
+          1
+        ]
+      ],
+      "variant_signatures": {
+        "rot0": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot0_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot90": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot90_flip_v": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot180": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_h": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot180_flip_v": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        "rot270": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_h": [
+          [
+            1,
+            1
+          ]
+        ],
+        "rot270_flip_v": [
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    }
+  ]
+}

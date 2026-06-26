@@ -1,0 +1,7 @@
+global_failures,index,input_objects,pred_objects,split,task_name,true_objects
+,0,1,1,train,task_001.json,1
+,0,1,1,test,task_001.json,1
+,0,1,1,train,task_002.json,1
+,0,1,1,test,task_002.json,1
+,0,2,2,train,task_003.json,2
+,0,2,2,test,task_003.json,2

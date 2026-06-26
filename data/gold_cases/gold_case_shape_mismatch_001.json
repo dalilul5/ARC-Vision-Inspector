@@ -1,0 +1,25 @@
+{
+  "name": "gold_case_shape_mismatch_001",
+  "description": "Prediction keeps object color but changes its geometry.",
+  "input": [
+    [0,0,0,0,0],
+    [0,4,4,4,0],
+    [0,0,4,0,0],
+    [0,0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0,0],
+    [0,4,4,0,0],
+    [0,4,0,0,0],
+    [0,4,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0,0],
+    [0,4,4,4,0],
+    [0,0,4,0,0],
+    [0,0,0,0,0]
+  ],
+  "expected_global_failures": [],
+  "expected_pair_failures": ["shape_mismatch", "area_mismatch", "position_or_translation_mismatch"],
+  "notes": "Predicted geometry differs from target."
+}

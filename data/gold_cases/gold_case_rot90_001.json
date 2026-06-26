@@ -1,0 +1,28 @@
+{
+  "name": "gold_case_rot90_001",
+  "description": "Prediction contains the same shape family but rotated relative to target.",
+  "input": [
+    [0,0,0,0,0],
+    [0,2,2,0,0],
+    [0,2,0,0,0],
+    [0,2,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "pred": [
+    [0,0,0,0,0],
+    [0,2,2,2,0],
+    [0,0,0,2,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "true": [
+    [0,0,0,0,0],
+    [0,2,2,0,0],
+    [0,2,0,0,0],
+    [0,2,0,0,0],
+    [0,0,0,0,0]
+  ],
+  "expected_global_failures": [],
+  "expected_pair_failures": ["orientation_or_reflection_mismatch"],
+  "notes": "Using orientation_or_reflection_mismatch as per core/diagnostics.py logic."
+}
