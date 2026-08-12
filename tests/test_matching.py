@@ -9,8 +9,10 @@ def test_object_match_score_exact():
     obj_b = extract_objects(grid_b)[0]
 
     score = object_match_score(obj_a, obj_b)
-    # color(3) + area(2) + canonical(4) + centroid(2.0) = 11.0
-    assert score == 11.0
+    from core.matching import get_active_weights
+    w_color, w_area, w_shape, w_centroid = get_active_weights()
+    expected = w_color + w_area + w_shape + w_centroid
+    assert score == expected
 
 def test_matching_unmatched():
     grid_pred = [[0, 0], [0, 1]]

@@ -1,7 +1,11 @@
+import os
+import json
 from typing import List, Dict, Any, Tuple
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 from core.objects import ArcObject
+
+CONFIG_PATH = "weights.json"
 
 def detect_shape_relation(pred_obj: ArcObject, true_obj: ArcObject) -> str:
     if pred_obj.shape_mask == true_obj.shape_mask:
@@ -17,22 +21,38 @@ def detect_shape_relation(pred_obj: ArcObject, true_obj: ArcObject) -> str:
         
     return "different_shape"
 
+def get_active_weights():
+    if os.path.exists(CONFIG_PATH):
+        try:
+            with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return (
+                    data.get("weight_color", 3.0),
+                    data.get("weight_area", 2.0),
+                    data.get("weight_shape", 4.0),
+                    data.get("weight_centroid", 2.0),
+                )
+        except Exception:
+            pass
+    return 3.0, 2.0, 4.0, 2.0
+
 def object_match_score(pred_obj: ArcObject, true_obj: ArcObject) -> float:
+    w_color, w_area, w_shape, w_centroid = get_active_weights()
     score = 0.0
 
     if pred_obj.color == true_obj.color:
-        score += 3.0
+        score += w_color
 
     if pred_obj.area == true_obj.area:
-        score += 2.0
+        score += w_area
 
     if pred_obj.canonical_shape == true_obj.canonical_shape:
-        score += 4.0
+        score += w_shape
 
     pr, pc = pred_obj.centroid
     tr, tc = true_obj.centroid
     dist = abs(pr - tr) + abs(pc - tc)
-    score += max(0.0, 2.0 - 0.2 * dist)
+    score += max(0.0, w_centroid - 0.2 * dist)
 
     return round(score, 3)
 

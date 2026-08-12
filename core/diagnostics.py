@@ -4,6 +4,7 @@ from collections import Counter
 
 from core.objects import extract_objects, ArcObject
 from core.matching import greedy_match_objects
+from core.formatters import to_markdown_context, to_action_vector, to_json_api
 
 class BaseFailureClassifier(ABC):
     @abstractmethod
@@ -175,8 +176,6 @@ def generate_textual_diagnosis(report: Dict[str, Any]) -> str:
                 elif ftype == "area_mismatch":
                     lines.append(f"  * Area Error: Predicted area {f.get('predicted_area')}, expected {f.get('expected_area')}")
     return "\n".join(lines)
-
-from core.formatters import to_markdown_context, to_action_vector, to_json_api
 
 class DiagnosticEngine:
     def __init__(self, classifiers: Optional[List[BaseFailureClassifier]] = None):
