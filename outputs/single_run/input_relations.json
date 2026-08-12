@@ -4,7 +4,8 @@
     "obj_b": 1,
     "same_color": false,
     "touches": false,
-    "contains_bbox": false,
+    "a_contains_b": false,
+    "b_contains_a": false,
     "centroid_distance": 3.758,
     "relative_position": "above|left_of"
   },
@@ -13,7 +14,8 @@
     "obj_b": 2,
     "same_color": false,
     "touches": false,
-    "contains_bbox": false,
+    "a_contains_b": false,
+    "b_contains_a": false,
     "centroid_distance": 3.717,
     "relative_position": "above|left_of"
   },
@@ -22,7 +24,8 @@
     "obj_b": 2,
     "same_color": false,
     "touches": true,
-    "contains_bbox": false,
+    "a_contains_b": false,
+    "b_contains_a": false,
     "centroid_distance": 2.462,
     "relative_position": "above|right_of"
   }

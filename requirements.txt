@@ -1,2 +1,5 @@
 numpy
 pillow
+scipy
+pytest
+gradio

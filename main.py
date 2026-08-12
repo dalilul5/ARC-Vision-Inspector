@@ -27,23 +27,23 @@ def print_failure_tree(report):
     if "missing_object" in global_fails or "spurious_object" in global_fails:
         tree_empty = False
         if "missing_object" in global_fails:
-            print(f"  ├── Primary Structural Failure: missing_object (Target objects missing: {matching.get('unmatched_true', [])})")
+            print(f"  |-- Primary Structural Failure: missing_object (Target objects missing: {matching.get('unmatched_true', [])})")
         if "spurious_object" in global_fails:
-            print(f"  ├── Primary Structural Failure: spurious_object (Hallucinated objects: {matching.get('unmatched_pred', [])})")
+            print(f"  |-- Primary Structural Failure: spurious_object (Hallucinated objects: {matching.get('unmatched_pred', [])})")
             
         # Symptoms of structural failures
         if "global_color_distribution_shift" in global_fails:
-            print(f"  │   └── Secondary Symptom: global_color_distribution_shift")
+            print(f"  |   +-- Secondary Symptom: global_color_distribution_shift")
             if not mapping:
-                print(f"  │       └── (No color_shift_mapping: color shift is merely a symptom of missing/spurious objects)")
+                print(f"  |       +-- (No color_shift_mapping: color shift is merely a symptom of missing/spurious objects)")
             else:
-                print(f"  │       └── (Also accompanied by explicit color mapping errors: {mapping})")
+                print(f"  |       +-- (Also accompanied by explicit color mapping errors: {mapping})")
                 
     # 2. Pure Color Mapping Failures (If no structural failures but colors are wrong)
     elif "global_color_distribution_shift" in global_fails:
         tree_empty = False
-        print(f"  ├── Primary Rule Failure: incorrect_color_mapping")
-        print(f"  │   └── Secondary Symptom: global_color_distribution_shift (Shift mapping: {mapping})")
+        print(f"  |-- Primary Rule Failure: incorrect_color_mapping")
+        print(f"  |   +-- Secondary Symptom: global_color_distribution_shift (Shift mapping: {mapping})")
         
     # 3. Pair-level Transformation Failures
     pair_diags = report.get("pair_diagnostics", [])
@@ -51,14 +51,14 @@ def print_failure_tree(report):
         failures = [f for f in pd.get("pair_failures", []) if f.get("type") != "no_pair_level_failure"]
         if failures:
             tree_empty = False
-            print(f"  ├── Transformation Failure: pred#{pd['pred_obj_id']} vs true#{pd['true_obj_id']}")
+            print(f"  |-- Transformation Failure: pred#{pd['pred_obj_id']} vs true#{pd['true_obj_id']}")
             for i, f in enumerate(failures):
-                connector = "└──" if i == len(failures) - 1 else "├──"
+                connector = "+--" if i == len(failures) - 1 else "|--"
                 mag_str = f" (magnitude: {f.get('magnitude'):.1f} {f.get('unit', '')})".strip() if "magnitude" in f else ""
-                print(f"  │   {connector} {f['type']}{mag_str}")
+                print(f"  |   {connector} {f['type']}{mag_str}")
                 
     if tree_empty:
-        print("  └── No failures detected (Perfect match!)")
+        print("  +-- No failures detected (Perfect match!)")
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)

@@ -59,11 +59,15 @@
       "pair_failures": [
         {
           "type": "shape_mismatch",
+          "error_category": "perceptual",
           "magnitude": 1.0
         },
         {
           "type": "position_or_translation_mismatch",
+          "error_category": "transformation",
           "magnitude": 1.25,
+          "delta_row": 0.5,
+          "delta_col": -0.75,
           "unit": "pixels"
         }
       ]
@@ -288,7 +292,48 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "color_map": {
+        "2": 4
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     }
   ],
   "pred_objects": [
@@ -509,7 +554,48 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "color_map": {
+        "2": 4
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
     }
   ],
   "true_objects": [
@@ -730,9 +816,141 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "color_map": {
+        "2": 4
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ]
     }
   ],
+  "textual_diagnosis": "=== ARC Diagnostic Card ===\nGlobal Failures: None\n\n- Object Pair (Pred 0 <-> True 0):\n  * Position Error: Shift by delta_row=0.5, delta_col=-0.75 (distance=1.25 px)",
+  "markdown_card": "## \ud83d\udd0d Diagnostic Evaluation Report\n**Global Failures**: `None`\n\n### Matched Object Pair Diagnostics\n\n- **Object Pair (Pred #0 \u2194 Target #0)**:\n  - \u26a0\ufe0f **shape_mismatch**: magnitude `1.0`\n  - \ud83d\udccd **Position Error**: Shifted by `(\u0394row=0.5, \u0394col=-0.75)` | Distance: `1.25 px`",
+  "action_vector": [
+    {
+      "action": "translate",
+      "pred_obj_id": 0,
+      "delta_row": 0.5,
+      "delta_col": -0.75
+    }
+  ],
+  "json_api": {
+    "summary": {
+      "object_counts": {
+        "input": 1,
+        "pred": 1,
+        "true": 1
+      },
+      "global_failures": [],
+      "color_match": true
+    },
+    "action_vector": [
+      {
+        "action": "translate",
+        "pred_obj_id": 0,
+        "delta_row": 0.5,
+        "delta_col": -0.75
+      }
+    ],
+    "markdown_card": "## \ud83d\udd0d Diagnostic Evaluation Report\n**Global Failures**: `None`\n\n### Matched Object Pair Diagnostics\n\n- **Object Pair (Pred #0 \u2194 Target #0)**:\n  - \u26a0\ufe0f **shape_mismatch**: magnitude `1.0`\n  - \ud83d\udccd **Position Error**: Shifted by `(\u0394row=0.5, \u0394col=-0.75)` | Distance: `1.25 px`",
+    "raw_diagnostics": {
+      "matching": {
+        "matches": [
+          {
+            "pred_obj_id": 0,
+            "true_obj_id": 0,
+            "score": 6.75,
+            "pred_color": 2,
+            "true_color": 2,
+            "pred_area": 4,
+            "true_area": 4,
+            "pred_centroid": [
+              1.25,
+              2.0
+            ],
+            "true_centroid": [
+              1.75,
+              1.25
+            ],
+            "shape_relation": "different_shape"
+          }
+        ],
+        "unmatched_pred": [],
+        "unmatched_true": []
+      },
+      "pair_diagnostics": [
+        {
+          "pred_obj_id": 0,
+          "true_obj_id": 0,
+          "score": 6.75,
+          "pred_color": 2,
+          "true_color": 2,
+          "pred_area": 4,
+          "true_area": 4,
+          "pred_centroid": [
+            1.25,
+            2.0
+          ],
+          "true_centroid": [
+            1.75,
+            1.25
+          ],
+          "shape_relation": "different_shape",
+          "pair_failures": [
+            {
+              "type": "shape_mismatch",
+              "error_category": "perceptual",
+              "magnitude": 1.0
+            },
+            {
+              "type": "position_or_translation_mismatch",
+              "error_category": "transformation",
+              "magnitude": 1.25,
+              "delta_row": 0.5,
+              "delta_col": -0.75,
+              "unit": "pixels"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "multi_shot_context": {
     "train_consistency": "consistent",
     "train_transformations_summary": [

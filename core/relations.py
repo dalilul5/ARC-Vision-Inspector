@@ -1,19 +1,16 @@
-from typing import List, Dict
+from typing import List, Dict, Any
 from math import sqrt
 from core.objects import ArcObject
 
 def touches(obj_a: ArcObject, obj_b: ArcObject) -> bool:
     pixels_a = set(obj_a.pixels)
-    pixels_b = set(obj_b.pixels)
-    for ra, ca in pixels_a:
-        for rb, cb in pixels_b:
-            if abs(ra - rb) + abs(ca - cb) == 1:
-                return True
+    for r, c in obj_b.pixels:
+        if (r - 1, c) in pixels_a or (r + 1, c) in pixels_a or (r, c - 1) in pixels_a or (r, c + 1) in pixels_a:
+            return True
     return False
 
 def is_contained(obj_a: ArcObject, obj_b: ArcObject) -> bool:
     """Checks if obj_a is strictly contained within obj_b's bounding box."""
-    # Ensure all pixels of obj_a are inside the min/max bounds of obj_b
     b_min_r, b_min_c, b_max_r, b_max_c = obj_b.bbox
     for r, c in obj_a.pixels:
         if not (b_min_r <= r <= b_max_r and b_min_c <= c <= b_max_c):
@@ -53,18 +50,21 @@ def relative_position(obj_a: ArcObject, obj_b: ArcObject) -> str:
 
     return f"{vertical}|{horizontal}"
 
-def build_relation_graph(objects: List[ArcObject]) -> List[Dict]:
+def compute_relation_dict(a: ArcObject, b: ArcObject) -> Dict[str, Any]:
+    return {
+        "obj_a": a.obj_id,
+        "obj_b": b.obj_id,
+        "same_color": a.color == b.color,
+        "touches": touches(a, b),
+        "a_contains_b": bbox_contains(a, b),
+        "b_contains_a": bbox_contains(b, a),
+        "centroid_distance": centroid_distance(a, b),
+        "relative_position": relative_position(a, b),
+    }
+
+def build_relation_graph(objects: List[ArcObject]) -> List[Dict[str, Any]]:
     rels = []
     for i in range(len(objects)):
         for j in range(i + 1, len(objects)):
-            a, b = objects[i], objects[j]
-            rels.append({
-                "obj_a": a.obj_id,
-                "obj_b": b.obj_id,
-                "same_color": a.color == b.color,
-                "touches": touches(a, b),
-                "contains_bbox": bbox_contains(a, b) or bbox_contains(b, a),
-                "centroid_distance": centroid_distance(a, b),
-                "relative_position": relative_position(a, b),
-            })
+            rels.append(compute_relation_dict(objects[i], objects[j]))
     return rels

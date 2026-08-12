@@ -216,7 +216,48 @@
           1
         ]
       ]
-    }
+    },
+    "parent_id": null,
+    "children": [],
+    "holes": [
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "color_map": {
+      "2": 4
+    },
+    "composite_shape_mask": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "composite_canonical_shape": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ]
   },
   {
     "obj_id": 1,
@@ -375,7 +416,31 @@
           1
         ]
       ]
-    }
+    },
+    "parent_id": null,
+    "children": [],
+    "holes": [],
+    "color_map": {
+      "3": 3
+    },
+    "composite_shape_mask": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "composite_canonical_shape": [
+      [
+        1,
+        1,
+        1
+      ]
+    ]
   },
   {
     "obj_id": 2,
@@ -594,6 +659,47 @@
           1
         ]
       ]
-    }
+    },
+    "parent_id": null,
+    "children": [],
+    "holes": [
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "color_map": {
+      "4": 4
+    },
+    "composite_shape_mask": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "composite_canonical_shape": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ]
   }
 ]

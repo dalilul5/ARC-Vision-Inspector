@@ -1,0 +1,7 @@
+{
+  "weight_color": 2.0,
+  "weight_area": 1.0,
+  "weight_shape": 3.0,
+  "weight_centroid": 1.0,
+  "benchmark_accuracy": 0.8372
+}

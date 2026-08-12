@@ -59,7 +59,10 @@
       "pair_failures": [
         {
           "type": "position_or_translation_mismatch",
-          "magnitude": 1.0000000000000002,
+          "error_category": "transformation",
+          "magnitude": 1.0,
+          "delta_row": 0.0,
+          "delta_col": 1.0,
           "unit": "pixels"
         }
       ]
@@ -238,7 +241,38 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          2
+        ]
+      ],
+      "color_map": {
+        "2": 3
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
     }
   ],
   "pred_objects": [
@@ -413,7 +447,38 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          2
+        ]
+      ],
+      "color_map": {
+        "2": 3
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
     }
   ],
   "true_objects": [
@@ -588,7 +653,124 @@
             1
           ]
         ]
-      }
+      },
+      "parent_id": null,
+      "children": [],
+      "holes": [
+        [
+          2,
+          3
+        ]
+      ],
+      "color_map": {
+        "2": 3
+      },
+      "composite_shape_mask": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "composite_canonical_shape": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
     }
-  ]
+  ],
+  "textual_diagnosis": "=== ARC Diagnostic Card ===\nGlobal Failures: None\n\n- Object Pair (Pred 0 <-> True 0):\n  * Position Error: Shift by delta_row=0.0, delta_col=1.0 (distance=1.0 px)",
+  "markdown_card": "## \ud83d\udd0d Diagnostic Evaluation Report\n**Global Failures**: `None`\n\n### Matched Object Pair Diagnostics\n\n- **Object Pair (Pred #0 \u2194 Target #0)**:\n  - \ud83d\udccd **Position Error**: Shifted by `(\u0394row=0.0, \u0394col=1.0)` | Distance: `1.0 px`",
+  "action_vector": [
+    {
+      "action": "translate",
+      "pred_obj_id": 0,
+      "delta_row": 0.0,
+      "delta_col": 1.0
+    }
+  ],
+  "json_api": {
+    "summary": {
+      "object_counts": {
+        "input": 1,
+        "pred": 1,
+        "true": 1
+      },
+      "global_failures": [],
+      "color_match": true
+    },
+    "action_vector": [
+      {
+        "action": "translate",
+        "pred_obj_id": 0,
+        "delta_row": 0.0,
+        "delta_col": 1.0
+      }
+    ],
+    "markdown_card": "## \ud83d\udd0d Diagnostic Evaluation Report\n**Global Failures**: `None`\n\n### Matched Object Pair Diagnostics\n\n- **Object Pair (Pred #0 \u2194 Target #0)**:\n  - \ud83d\udccd **Position Error**: Shifted by `(\u0394row=0.0, \u0394col=1.0)` | Distance: `1.0 px`",
+    "raw_diagnostics": {
+      "matching": {
+        "matches": [
+          {
+            "pred_obj_id": 0,
+            "true_obj_id": 0,
+            "score": 10.8,
+            "pred_color": 2,
+            "true_color": 2,
+            "pred_area": 3,
+            "true_area": 3,
+            "pred_centroid": [
+              1.333,
+              1.333
+            ],
+            "true_centroid": [
+              1.333,
+              2.333
+            ],
+            "shape_relation": "exact_shape"
+          }
+        ],
+        "unmatched_pred": [],
+        "unmatched_true": []
+      },
+      "pair_diagnostics": [
+        {
+          "pred_obj_id": 0,
+          "true_obj_id": 0,
+          "score": 10.8,
+          "pred_color": 2,
+          "true_color": 2,
+          "pred_area": 3,
+          "true_area": 3,
+          "pred_centroid": [
+            1.333,
+            1.333
+          ],
+          "true_centroid": [
+            1.333,
+            2.333
+          ],
+          "shape_relation": "exact_shape",
+          "pair_failures": [
+            {
+              "type": "position_or_translation_mismatch",
+              "error_category": "transformation",
+              "magnitude": 1.0,
+              "delta_row": 0.0,
+              "delta_col": 1.0,
+              "unit": "pixels"
+            }
+          ]
+        }
+      ]
+    }
+  }
 }

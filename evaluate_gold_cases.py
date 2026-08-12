@@ -24,7 +24,11 @@ def load_gold_cases(directory: str) -> List[Dict[str, Any]]:
 def flatten_pair_failures(report: Dict[str, Any]) -> List[str]:
     labels = []
     for pd in report.get("pair_diagnostics", []):
-        labels.extend(pd.get("pair_failures", []))
+        for item in pd.get("pair_failures", []):
+            if isinstance(item, dict):
+                labels.append(item.get("type"))
+            else:
+                labels.append(str(item))
     return sorted(set(labels))
 
 def evaluate_case(case: Dict[str, Any]) -> Dict[str, Any]:

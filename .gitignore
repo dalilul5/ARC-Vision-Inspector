@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & testing cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv
+v-env
+env/
+venv/
+ENV/
+
+# Outputs & temporary generated data
+outputs/single_run/*.png
+outputs/single_run/*.json
+outputs/batch_run/
+outputs/gold_eval/
+outputs/benchmark_summary.json
+data/synthetic_benchmark/
+
+# IDE & OS files
+.DS_Store
+.vscode/
+.idea/
