@@ -19,7 +19,7 @@
       {
         "pred_obj_id": 0,
         "true_obj_id": 0,
-        "score": 6.75,
+        "score": 3.97,
         "pred_color": 2,
         "true_color": 2,
         "pred_area": 4,
@@ -42,7 +42,7 @@
     {
       "pred_obj_id": 0,
       "true_obj_id": 0,
-      "score": 6.75,
+      "score": 3.97,
       "pred_color": 2,
       "true_color": 2,
       "pred_area": 4,
@@ -295,16 +295,7 @@
       },
       "parent_id": null,
       "children": [],
-      "holes": [
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ]
-      ],
+      "holes": [],
       "color_map": {
         "2": 4
       },
@@ -557,16 +548,7 @@
       },
       "parent_id": null,
       "children": [],
-      "holes": [
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ]
-      ],
+      "holes": [],
       "color_map": {
         "2": 4
       },
@@ -819,16 +801,7 @@
       },
       "parent_id": null,
       "children": [],
-      "holes": [
-        [
-          2,
-          2
-        ],
-        [
-          3,
-          2
-        ]
-      ],
+      "holes": [],
       "color_map": {
         "2": 4
       },
@@ -895,7 +868,7 @@
           {
             "pred_obj_id": 0,
             "true_obj_id": 0,
-            "score": 6.75,
+            "score": 3.97,
             "pred_color": 2,
             "true_color": 2,
             "pred_area": 4,
@@ -918,7 +891,7 @@
         {
           "pred_obj_id": 0,
           "true_obj_id": 0,
-          "score": 6.75,
+          "score": 3.97,
           "pred_color": 2,
           "true_color": 2,
           "pred_area": 4,

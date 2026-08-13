@@ -2,11 +2,13 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field, asdict
 from typing import List, Tuple, Dict, Any, Optional
 import numpy as np
+from scipy.ndimage import binary_fill_holes
 
 from core.grid_utils import (
     to_numpy,
     infer_background_color,
     neighbors4,
+    neighbors8,
     crop_binary_mask_from_pixels,
     mask_to_tuple,
     all_shape_variants,
@@ -102,30 +104,38 @@ def build_object_hierarchy(objects: List[ArcObject]) -> List[ArcObject]:
     return objects
 
 def detect_holes(grid: List[List[int]], objects: List[ArcObject], background_color: int = None) -> None:
-    """Detects background pixels completely enclosed within an object's bounding box that are not part of any object."""
+    """Detects background pixels completely enclosed within an object using binary flood-fill."""
     arr = to_numpy(grid)
-    rows, cols = arr.shape
     if background_color is None:
         background_color = infer_background_color(grid)
 
-    object_pixel_set = {p for obj in objects for p in obj.pixels}
-
     for obj in objects:
         min_r, min_c, max_r, max_c = obj.bbox
+        shape_mask_np = crop_binary_mask_from_pixels(obj.pixels)
+        filled = binary_fill_holes(shape_mask_np)
+        hole_mask = filled & (~(shape_mask_np.astype(bool)))
+        
         obj_holes = []
-        for r in range(min_r, max_r + 1):
-            for c in range(min_c, max_c + 1):
-                if arr[r, c] == background_color and (r, c) not in object_pixel_set:
-                    obj_holes.append((r, c))
-        obj.holes = obj_holes
+        hole_coords = np.argwhere(hole_mask)
+        for hr_local, hc_local in hole_coords:
+            gr, gc = int(min_r + hr_local), int(min_c + hc_local)
+            if arr[gr, gc] == background_color:
+                obj_holes.append((gr, gc))
+        obj.holes = sorted(obj_holes)
 
 class ObjectExtractor(ABC):
     @abstractmethod
-    def extract(self, grid: List[List[int]], background_color: int = None) -> List[ArcObject]:
+    def extract(self, grid: List[List[int]], background_color: int = None, connectivity: int = 4) -> List[ArcObject]:
         pass
 
 class SingleColorConnectedComponentExtractor(ObjectExtractor):
-    def extract(self, grid: List[List[int]], background_color: int = None) -> List[ArcObject]:
+    def __init__(self, connectivity: int = 4):
+        self.connectivity = connectivity
+
+    def extract(self, grid: List[List[int]], background_color: int = None, connectivity: int = None) -> List[ArcObject]:
+        conn = connectivity if connectivity is not None else self.connectivity
+        neighbor_fn = neighbors8 if conn == 8 else neighbors4
+
         arr = to_numpy(grid)
         rows, cols = arr.shape
 
@@ -149,7 +159,7 @@ class SingleColorConnectedComponentExtractor(ObjectExtractor):
                 while stack:
                     cr, cc = stack.pop()
                     pixels.append((cr, cc))
-                    for nr, nc in neighbors4(cr, cc, rows, cols):
+                    for nr, nc in neighbor_fn(cr, cc, rows, cols):
                         if not visited[nr, nc] and arr[nr, nc] == color:
                             visited[nr, nc] = True
                             stack.append((nr, nc))
@@ -181,6 +191,7 @@ class SingleColorConnectedComponentExtractor(ObjectExtractor):
         detect_holes(grid, objects, background_color)
         return objects
 
-def extract_objects(grid: List[List[int]], background_color: int = None) -> List[ArcObject]:
-    extractor = SingleColorConnectedComponentExtractor()
+def extract_objects(grid: List[List[int]], background_color: int = None, connectivity: int = 4) -> List[ArcObject]:
+    extractor = SingleColorConnectedComponentExtractor(connectivity=connectivity)
     return extractor.extract(grid, background_color)
+

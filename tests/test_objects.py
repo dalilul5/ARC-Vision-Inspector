@@ -45,3 +45,31 @@ def test_hole_detection():
     assert len(objs) == 1
     assert len(objs[0].holes) == 1
     assert objs[0].holes[0] == (2, 2)
+
+def test_hole_detection_l_shape_no_false_positive():
+    # L-shaped object (color 4) has a concave corner at (2,2), but NO enclosed hole
+    grid = [
+        [0, 0, 0, 0],
+        [0, 4, 4, 0],
+        [0, 4, 0, 0],
+        [0, 0, 0, 0]
+    ]
+    objs = extract_objects(grid, background_color=0)
+    assert len(objs) == 1
+    # Concave corner should NOT be identified as a hole
+    assert len(objs[0].holes) == 0
+
+def test_connectivity_8():
+    # Two pixels connected only diagonally
+    grid = [
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+    ]
+    objs_4 = extract_objects(grid, background_color=0, connectivity=4)
+    assert len(objs_4) == 2
+
+    objs_8 = extract_objects(grid, background_color=0, connectivity=8)
+    assert len(objs_8) == 1
+    assert objs_8[0].area == 2
+

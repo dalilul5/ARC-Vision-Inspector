@@ -1,11 +1,13 @@
 import os
 import json
+import math
 from typing import List, Dict, Any, Tuple
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 from core.objects import ArcObject
 
 CONFIG_PATH = "weights.json"
+DEFAULT_MIN_MATCH_THRESHOLD = 3.5
 
 def detect_shape_relation(pred_obj: ArcObject, true_obj: ArcObject) -> str:
     if pred_obj.shape_mask == true_obj.shape_mask:
@@ -31,34 +33,49 @@ def get_active_weights():
                     data.get("weight_area", 2.0),
                     data.get("weight_shape", 4.0),
                     data.get("weight_centroid", 2.0),
+                    data.get("min_match_threshold", DEFAULT_MIN_MATCH_THRESHOLD),
                 )
         except Exception:
             pass
-    return 3.0, 2.0, 4.0, 2.0
+    return 3.0, 2.0, 4.0, 2.0, DEFAULT_MIN_MATCH_THRESHOLD
 
 def object_match_score(pred_obj: ArcObject, true_obj: ArcObject) -> float:
-    w_color, w_area, w_shape, w_centroid = get_active_weights()
+    w_color, w_area, w_shape, w_centroid, _ = get_active_weights()
     score = 0.0
 
+    # 1. Color matching (discrete)
     if pred_obj.color == true_obj.color:
         score += w_color
 
-    if pred_obj.area == true_obj.area:
-        score += w_area
+    # 2. Area matching (continuous similarity ratio)
+    if pred_obj.area > 0 and true_obj.area > 0:
+        area_ratio = min(pred_obj.area, true_obj.area) / max(pred_obj.area, true_obj.area)
+        score += w_area * area_ratio
 
-    if pred_obj.canonical_shape == true_obj.canonical_shape:
+    # 3. Shape matching (canonical credit)
+    if pred_obj.shape_mask == true_obj.shape_mask:
         score += w_shape
+    elif pred_obj.canonical_shape == true_obj.canonical_shape:
+        score += w_shape * 0.85
 
+    # 4. Centroid proximity (normalized Euclidean distance)
     pr, pc = pred_obj.centroid
     tr, tc = true_obj.centroid
-    dist = abs(pr - tr) + abs(pc - tc)
-    score += max(0.0, w_centroid - 0.2 * dist)
+    dist = math.sqrt((pr - tr) ** 2 + (pc - tc) ** 2)
+    
+    # Estimate grid diagonal scale dynamically
+    grid_diag = max(30.0, math.sqrt(max(pr, tr, 1) ** 2 + max(pc, tc, 1) ** 2) * 1.5)
+    norm_dist = min(1.0, dist / grid_diag)
+    score += max(0.0, w_centroid * (1.0 - norm_dist))
 
     return round(score, 3)
 
-def greedy_match_objects(pred_objs: List[ArcObject], true_objs: List[ArcObject]) -> Dict[str, Any]:
-    # Keeping the original function name for backwards compatibility, but implementing optimal matching
+def greedy_match_objects(pred_objs: List[ArcObject], true_objs: List[ArcObject], min_threshold: float = None) -> Dict[str, Any]:
+    # Optimal bipartite matching via Hungarian algorithm (linear_sum_assignment)
     pairs = []
+    
+    if min_threshold is None:
+        _, _, _, _, min_threshold = get_active_weights()
     
     if not pred_objs or not true_objs:
         return {
@@ -80,9 +97,8 @@ def greedy_match_objects(pred_objs: List[ArcObject], true_objs: List[ArcObject])
 
     for i, j in zip(row_ind, col_ind):
         score = -cost_matrix[i, j]
-        # Only accept matches with a positive score (e.g., some baseline similarity)
-        # If score is 0, they are completely unrelated.
-        if score > 0:
+        # Only accept matches meeting or exceeding the minimum match threshold
+        if score >= min_threshold:
             used_pred.add(i)
             used_true.add(j)
             po = pred_objs[i]
@@ -109,3 +125,4 @@ def greedy_match_objects(pred_objs: List[ArcObject], true_objs: List[ArcObject])
         "unmatched_pred": unmatched_pred,
         "unmatched_true": unmatched_true,
     }
+

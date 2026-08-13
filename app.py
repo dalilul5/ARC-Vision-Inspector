@@ -5,6 +5,7 @@ import gradio as gr
 from core.diagnostics import DiagnosticEngine, diagnose_failure
 from core.visualization import render_grid, overlay_objects
 from core.formatters import to_markdown_context, to_action_vector, to_json_api
+from core.grid_utils import validate_grid
 from demo_data import EXAMPLE_INPUT, EXAMPLE_PRED, EXAMPLE_TRUE
 import core.matching as matching_module
 
@@ -12,9 +13,11 @@ CONFIG_PATH = "weights.json"
 
 def parse_grid_str(grid_str: str):
     try:
-        return json.loads(grid_str)
+        grid_data = json.loads(grid_str)
     except Exception as e:
-        raise ValueError(f"Invalid JSON grid format: {e}")
+        raise ValueError(f"Invalid JSON format: {e}")
+    return validate_grid(grid_data)
+
 
 def run_single_inspection(input_str: str, pred_str: str, true_str: str):
     try:
