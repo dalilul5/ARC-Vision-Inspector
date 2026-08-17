@@ -1,55 +1,42 @@
-import pytest
+from pathlib import Path
+
 from core.objects import extract_objects
-from core.matching import object_match_score, greedy_match_objects
+from core.matching import MatchingConfig, load_matching_config, object_match_score, match_objects_greedy, match_objects_hungarian
+
 
 def test_object_match_score_exact():
-    grid_a = [[0, 0], [0, 1]]
-    grid_b = [[0, 0], [0, 1]]
-    obj_a = extract_objects(grid_a)[0]
-    obj_b = extract_objects(grid_b)[0]
-
-    score = object_match_score(obj_a, obj_b)
-    from core.matching import get_active_weights
-    w_color, w_area, w_shape, w_centroid, *_ = get_active_weights()
-    expected = round(w_color + w_area + w_shape + w_centroid, 3)
-    assert score == expected
+    obj_a = extract_objects([[0, 0], [0, 1]])[0]
+    obj_b = extract_objects([[0, 0], [0, 1]])[0]
+    config = MatchingConfig()
+    assert object_match_score(obj_a, obj_b, config) == round(config.weight_color + config.weight_area + config.weight_shape + config.weight_centroid, 3)
 
 
-def test_matching_unmatched():
-    grid_pred = [[0, 0], [0, 1]]
-    grid_true = [[0, 0], [0, 2]]
-    pred_objs = extract_objects(grid_pred)
-    true_objs = extract_objects(grid_true)
-
-    result = greedy_match_objects(pred_objs, true_objs)
+def test_different_color_same_object_can_still_match():
+    pred = extract_objects([[0, 0], [0, 1]])
+    true = extract_objects([[0, 0], [0, 2]])
+    result = match_objects_hungarian(pred, true)
     assert len(result["matches"]) == 1
-    # Different colors but same area, shape, centroid
     assert result["matches"][0]["pred_color"] == 1
     assert result["matches"][0]["true_color"] == 2
 
+
 def test_matching_discards_false_pairs_below_threshold():
-    # pred_obj: small blue dot at top-left
-    grid_pred = [
-        [1, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]
-    ]
-    # true_obj: large red block (3x3) at bottom-right
-    grid_true = [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 2, 2, 2],
-        [0, 0, 2, 2, 2],
-        [0, 0, 2, 2, 2]
-    ]
-    pred_objs = extract_objects(grid_pred)
-    true_objs = extract_objects(grid_true)
+    pred = extract_objects([[1,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]])
+    true = extract_objects([[0,0,0,0,0],[0,0,0,0,0],[0,0,2,2,2],[0,0,2,2,2],[0,0,2,2,2]])
+    result = match_objects_hungarian(pred, true, min_threshold=3.5)
+    assert not result["matches"]
+    assert len(result["unmatched_pred"]) == len(result["unmatched_true"]) == 1
 
-    result = greedy_match_objects(pred_objs, true_objs, min_threshold=3.5)
-    # Unrelated objects must NOT be paired together
-    assert len(result["matches"]) == 0
-    assert len(result["unmatched_pred"]) == 1
-    assert len(result["unmatched_true"]) == 1
 
+def test_invalid_config_falls_back_to_defaults(tmp_path: Path):
+    path = tmp_path / "weights.json"
+    path.write_text("not-json", encoding="utf-8")
+    assert load_matching_config(path) == MatchingConfig()
+
+
+def test_hungarian_never_scores_below_greedy():
+    pred = extract_objects([[1,0,2],[1,0,2],[0,0,0]], background_color=0)
+    true = extract_objects([[1,0,2],[0,0,2],[0,0,2]], background_color=0)
+    greedy = match_objects_greedy(pred, true, min_threshold=0)
+    hungarian = match_objects_hungarian(pred, true, min_threshold=0)
+    assert sum(m["score"] for m in hungarian["matches"]) >= sum(m["score"] for m in greedy["matches"])
